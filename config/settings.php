@@ -13,6 +13,10 @@ return [
             'password'  => getenv('PASSWORD'),
             'collation' => getenv('COLLATION'),
             'prefix'    => getenv('PREFIX'),
-            ],
+        ],
+        'pdo' => [
+            'engine'    => 'sqlite',
+            'database'  => '../mydatabase'
+        ]
     ],
 ];

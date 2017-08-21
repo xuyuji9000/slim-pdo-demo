@@ -43,7 +43,16 @@ $container['logger'] = function($c) {
 };
 
 // Eloquent Configuration
-$capsule = new Illuminate\Database\Capsule\Manager;
-$capsule->addConnection($container->get('settings')['db']);
-$capsule->setAsGlobal();
-$capsule->bootEloquent();
+// $capsule = new Illuminate\Database\Capsule\Manager;
+// $capsule->addConnection($container->get('settings')['db']);
+// $capsule->setAsGlobal();
+// $capsule->bootEloquent();
+
+// PDO
+$container['db'] = function($c) {
+    $config = $c->get('settings')['pdo'];
+    $dsn = '';
+    if('sqlite' == $config['engine'])
+        $dsn = "sqlite:{$config['database']}.sqlite";
+    return new PDO($dsn);
+};
